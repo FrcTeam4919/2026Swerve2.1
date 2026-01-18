@@ -61,4 +61,21 @@ public static class DriveConstants {
     public static final double kDriveDeadbandZ = 0.1;
     public static final boolean kTeleField = true;
   }
+  public static class ControlSystem {
+    // Driving motor CAN IDs
+    public static final int kLeftFrontDrive = 12;
+    public static final int kLeftBackDrive = 17;
+    public static final int kRightFrontDrive = 3;
+    public static final int kRightBackDrive = 2;
+    // Turning motors
+    public static final int kLeftFrontTurn = 8;
+    public static final int kLeftBackTurn = 11;
+    public static final int kRightFrontTurn = 7;
+    public static final int kRightBackTurn = 4;
+    // CANCoder Can IDs for turning encoders
+    public static final int kLFturn = 13;
+    public static final int kLBturn = 16;
+    public static final int kRFturn = 14;
+    public static final int kRBturn = 15;
+  }
 }
