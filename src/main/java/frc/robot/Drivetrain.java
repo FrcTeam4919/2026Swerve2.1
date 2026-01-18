@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
+import frc.robot.Constants.ControlSystem;;
 
 
 /** Represents a swerve drive style drivetrain. */
@@ -28,10 +29,10 @@ public class Drivetrain {
   private final Translation2d m_backLeftLocation = new Translation2d(-Units.inchesToMeters(18.5), Units.inchesToMeters(18.5));
   private final Translation2d m_backRightLocation = new Translation2d(-Units.inchesToMeters(18.5), -Units.inchesToMeters(18.5));
 
-  private final SwerveModule m_frontLeft = new SwerveModule(1, 2, 0, 1, 2, 3);
-  private final SwerveModule m_frontRight = new SwerveModule(3, 4, 4, 5, 6, 7);
-  private final SwerveModule m_backLeft = new SwerveModule(5, 6, 8, 9, 10, 11);
-  private final SwerveModule m_backRight = new SwerveModule(7, 8, 12, 13, 14, 15);
+  private final SwerveModule m_frontLeft = new SwerveModule(ControlSystem.kLeftFrontDrive, ControlSystem.kLeftFrontTurn, 0, 1, 2, 3);
+  private final SwerveModule m_frontRight = new SwerveModule(ControlSystem.kRightFrontDrive, ControlSystem.kRightFrontTurn, 4, 5, 6, 7);
+  private final SwerveModule m_backLeft = new SwerveModule(ControlSystem.kLeftBackDrive, ControlSystem.kLeftBackTurn, 8, 9, 10, 11);
+  private final SwerveModule m_backRight = new SwerveModule(ControlSystem.kRightBackDrive, ControlSystem.kRightBackTurn, 12, 13, 14, 15);
 
  
   private final ADXRS450_Gyro m_gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
