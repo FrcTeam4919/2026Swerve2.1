@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Constants.ControlSystem;
+import frc.robot.Constants.DriveConstants;
 
 
 /** Represents a swerve drive style drivetrain. */
@@ -28,13 +29,12 @@ public class Drivetrain {
   private final Translation2d m_frontRightLocation = new Translation2d(Units.inchesToMeters(18.5), -Units.inchesToMeters(18.5));
   private final Translation2d m_backLeftLocation = new Translation2d(-Units.inchesToMeters(18.5), Units.inchesToMeters(18.5));
   private final Translation2d m_backRightLocation = new Translation2d(-Units.inchesToMeters(18.5), -Units.inchesToMeters(18.5));
+  
+  private final SwerveModule m_frontLeft = new SwerveModule(ControlSystem.kLeftFrontDrive, ControlSystem.kLeftFrontTurn, ControlSystem.kLFturn, DriveConstants.kFrontLeftModuleAngularOffset);
+  private final SwerveModule m_frontRight = new SwerveModule(ControlSystem.kRightFrontDrive, ControlSystem.kRightFrontTurn, ControlSystem.kRFturn, DriveConstants.kFrontRightModuleAngularOffset);
+  private final SwerveModule m_backLeft = new SwerveModule(ControlSystem.kLeftBackDrive, ControlSystem.kLeftBackTurn, ControlSystem.kLBturn, DriveConstants.kBackLeftModuleAngularOffset);
+  private final SwerveModule m_backRight = new SwerveModule(ControlSystem.kRightBackDrive, ControlSystem.kRightBackTurn, ControlSystem.kRBturn, DriveConstants.kBackRightModuleAngularOffset);
 
-  private final SwerveModule m_frontLeft = new SwerveModule(ControlSystem.kLeftFrontDrive, ControlSystem.kLeftFrontTurn, 0,0);
-  private final SwerveModule m_frontRight = new SwerveModule(ControlSystem.kRightFrontDrive, ControlSystem.kRightFrontTurn, 4, 5);
-  private final SwerveModule m_backLeft = new SwerveModule(ControlSystem.kLeftBackDrive, ControlSystem.kLeftBackTurn, 8, 0);
-  private final SwerveModule m_backRight = new SwerveModule(ControlSystem.kRightBackDrive, ControlSystem.kRightBackTurn, 12, 13);
-
- 
   private final ADXRS450_Gyro m_gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
 
   private final SwerveDriveKinematics m_kinematics =
