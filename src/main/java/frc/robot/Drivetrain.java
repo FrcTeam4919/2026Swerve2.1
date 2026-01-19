@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
-import frc.robot.Constants.ControlSystem;;
+import frc.robot.Constants.ControlSystem;
 
 
 /** Represents a swerve drive style drivetrain. */
