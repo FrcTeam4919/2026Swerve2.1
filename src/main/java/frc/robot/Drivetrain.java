@@ -21,6 +21,7 @@ import com.studica.frc.AHRS;
 //import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.ControlSystem;
 import frc.robot.Constants.DriveConstants;
 
