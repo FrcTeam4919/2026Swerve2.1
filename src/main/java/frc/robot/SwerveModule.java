@@ -51,14 +51,14 @@ private double m_moduleEncoderAngularOffset;
   private SwerveModuleState m_desiredState = new SwerveModuleState(0.0, new Rotation2d());
 
   // Gains are for example purposes only - must be determined for your own robot!
-  private final PIDController m_drivePIDController = new PIDController(1, 0, 0);
+  private final PIDController m_drivePIDController = new PIDController(SwerveConstants.driveGainP, SwerveConstants.driveGainI, SwerveConstants.driveGainD);
 
   // Gains are for example purposes only - must be determined for your own robot!
   private final ProfiledPIDController m_turningPIDController =
       new ProfiledPIDController(
-          1,
-          0,
-          0,
+          SwerveConstants.turnGainP,
+          SwerveConstants.turnGainI,
+          SwerveConstants.turnGainD,
           new TrapezoidProfile.Constraints(
               kModuleMaxAngularVelocity, kModuleMaxAngularAcceleration));
 
