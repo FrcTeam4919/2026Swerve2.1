@@ -113,7 +113,7 @@ public class Drivetrain {
   }
   // Put values to SmartDashboard 
    public void SmartDashData(){
-
+System.out.println("working smartdashboardcall");//for debugging
   SmartDashboard.putNumber("Front Left drive speed", m_frontLeft.DriveOutput());
   SmartDashboard.putNumber("Front Right drive speed", m_frontRight.DriveOutput());
   SmartDashboard.putNumber("Back Left drive speed", m_backLeft.DriveOutput());
