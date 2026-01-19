@@ -25,8 +25,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    m_swerve.SmartDashData();
     driveWithJoystick(true);
   }
+
 
   private void driveWithJoystick(boolean fieldRelative) {
     // Get the x speed. We are inverting this because Xbox controllers return

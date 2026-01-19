@@ -151,7 +151,9 @@ private int m_driveMotorChannel;
         m_driveEncoder.getPosition(),
         getAngle());
   }
-
+  public double getTurnAngle() {
+    return m_turningEncoder.getPosition();
+  }
   public double wheelAngle() {
     var angle = getCanCoder();
     double angleRad = angle.getRadians()-m_moduleEncoderAngularOffset;
@@ -164,6 +166,16 @@ private int m_driveMotorChannel;
   public Rotation2d getAngle() {
     return Rotation2d.fromRadians(m_turningEncoder.getPosition());
   }
+  public double TurnOutput() {
+    double turn = m_CANcoder.getAbsolutePosition().getValueAsDouble();
+    return turn;
+  }
+
+  public double DriveOutput() {
+    double drive = m_driveEncoder.getVelocity();
+    return drive;
+  }
+  
   /**
    * Sets the desired state for the module.
    *
