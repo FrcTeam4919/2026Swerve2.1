@@ -15,7 +15,9 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
 import com.ctre.phoenix6.hardware.CANcoder;
+import com.revrobotics.PersistMode;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.FeedbackSensor;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -85,7 +87,7 @@ private int m_driveMotorChannel;
     m_driveMotorConfig.closedLoop
       .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
       .pid(SwerveConstants.driveGainP, SwerveConstants.driveGainI, SwerveConstants.driveGainD);
-     m_driveMotor.configure(m_driveMotorConfig, null, null);
+     m_driveMotor.configure(m_driveMotorConfig, ResetMode.valueOf("kNoResetSafeParameters"), PersistMode.valueOf("kPersistParameters"));
 
     m_driveMotorChannel = driveMotorChannel; //for debugging
 
@@ -101,8 +103,8 @@ private int m_driveMotorChannel;
     m_turningMotorConfig.closedLoop
       .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
       .pid(SwerveConstants.turnGainP, SwerveConstants.turnGainI, SwerveConstants.turnGainD);
-    m_turningMotor = new SparkMax(turningMotorChannel, MotorType.kBrushless);
-    m_turningMotor.configure(m_turningMotorConfig, null, null);
+    //m_turningMotor = new SparkMax(turningMotorChannel, MotorType.kBrushless);
+    m_turningMotor.configure(m_turningMotorConfig, ResetMode.valueOf("kNoResetSafeParameters"), PersistMode.valueOf("kPersistParameters"));
 
     m_turningEncoder = m_turningMotor.getEncoder();
     m_turnClosedLoopController = m_turningMotor.getClosedLoopController();
