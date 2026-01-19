@@ -41,10 +41,11 @@ public class SwerveModule {
   private final RelativeEncoder m_turningEncoder;
 
   private final CANcoder m_CANcoder;
+  
 
   private final SparkClosedLoopController m_driveClosedLoopController;
   private final SparkClosedLoopController m_turnClosedLoopController;
-
+private double m_moduleEncoderAngularOffset;
   private SwerveModuleState m_desiredState = new SwerveModuleState(0.0, new Rotation2d());
 
   // Gains are for example purposes only - must be determined for your own robot!
@@ -119,6 +120,8 @@ private int m_driveMotorChannel;
 
     // Limit the PID Controller's input range between -pi and pi and set the input
     // to be continuous.
+     m_moduleEncoderAngularOffset = moduleEncoderAngularOffset*Math.PI*2;
+    m_desiredState.angle = getAngle();
     m_turningPIDController.enableContinuousInput(-Math.PI, Math.PI);
     resetEncoders();
   }
