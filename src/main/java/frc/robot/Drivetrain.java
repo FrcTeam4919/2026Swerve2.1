@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.studica.frc.AHRS;
+
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -12,8 +14,11 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+//import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.util.sendable.Sendable;
+import com.studica.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Constants.ControlSystem;
@@ -35,7 +40,7 @@ public class Drivetrain {
   private final SwerveModule m_backLeft = new SwerveModule(ControlSystem.kLeftBackDrive, ControlSystem.kLeftBackTurn, ControlSystem.kLBturn, DriveConstants.kBackLeftModuleAngularOffset);
   private final SwerveModule m_backRight = new SwerveModule(ControlSystem.kRightBackDrive, ControlSystem.kRightBackTurn, ControlSystem.kRBturn, DriveConstants.kBackRightModuleAngularOffset);
 
-  private final ADXRS450_Gyro m_gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
+  private final AHRS m_gyro = new AHRS(AHRS.NavXComType.kMXP_SPI);;
 
   private final SwerveDriveKinematics m_kinematics =
       new SwerveDriveKinematics(
