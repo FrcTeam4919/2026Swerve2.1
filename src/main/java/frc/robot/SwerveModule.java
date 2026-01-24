@@ -124,7 +124,7 @@ private int m_driveMotorChannel;
     // to be continuous.
      m_moduleEncoderAngularOffset = moduleEncoderAngularOffset*Math.PI*2;
     m_desiredState.angle = getAngle();
-    m_turningPIDController.enableContinuousInput(-Math.PI, Math.PI);
+    //m_turningPIDController.enableContinuousInput(-Math.PI, Math.PI);
     resetEncoders();
   }
 
