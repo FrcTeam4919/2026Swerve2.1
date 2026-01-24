@@ -63,8 +63,8 @@ private double m_moduleEncoderAngularOffset;
               kModuleMaxAngularVelocity, kModuleMaxAngularAcceleration));
 
   // Gains are for example purposes only - must be determined for your own robot!
-  private final SimpleMotorFeedforward m_driveFeedforward = new SimpleMotorFeedforward(8.09, 1.53);
-  private final SimpleMotorFeedforward m_turnFeedforward = new SimpleMotorFeedforward(8.09, 1.53);
+  private final SimpleMotorFeedforward m_driveFeedforward = new SimpleMotorFeedforward(0.5, 1.5);
+  private final SimpleMotorFeedforward m_turnFeedforward = new SimpleMotorFeedforward(0.5, 0.25);
 private int m_driveMotorChannel;
   /**
    * Constructs a SwerveModule with a drive motor, turning motor, drive encoder and turning encoder.

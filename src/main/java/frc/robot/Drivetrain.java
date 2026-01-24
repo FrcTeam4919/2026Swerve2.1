@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix6.SignalLogger;
 import com.studica.frc.AHRS;
 
 import edu.wpi.first.math.VecBuilder;
@@ -113,7 +114,8 @@ public class Drivetrain {
   }
   // Put values to SmartDashboard 
    public void SmartDashData(){
-System.out.println("working smartdashboardcall");//for debugging
+    SignalLogger.enableAutoLogging(false);
+//System.out.println("working smartdashboardcall");//for debugging
   SmartDashboard.putNumber("Front Left drive speed", m_frontLeft.DriveOutput());
   SmartDashboard.putNumber("Front Right drive speed", m_frontRight.DriveOutput());
   SmartDashboard.putNumber("Back Left drive speed", m_backLeft.DriveOutput());
