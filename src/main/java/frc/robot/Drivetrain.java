@@ -33,10 +33,10 @@ public class Drivetrain {
   public static final double kMaxSpeed = DriveConstants.kMaxSpeed; // 3 meters per second
   public static final double kMaxAngularSpeed = Math.PI; // 1/2 rotation per second
 
-  private final Translation2d m_frontLeftLocation = new Translation2d(Units.inchesToMeters(18.5), Units.inchesToMeters(18.5));
-  private final Translation2d m_frontRightLocation = new Translation2d(Units.inchesToMeters(18.5), -Units.inchesToMeters(18.5));
-  private final Translation2d m_backLeftLocation = new Translation2d(-Units.inchesToMeters(18.5), Units.inchesToMeters(18.5));
-  private final Translation2d m_backRightLocation = new Translation2d(-Units.inchesToMeters(18.5), -Units.inchesToMeters(18.5));
+  private final Translation2d m_frontLeftLocation = new Translation2d(Units.inchesToMeters(DriveConstants.WheelXdist), Units.inchesToMeters(DriveConstants.WheelYdist));
+  private final Translation2d m_frontRightLocation = new Translation2d(Units.inchesToMeters(DriveConstants.WheelXdist), -Units.inchesToMeters(DriveConstants.WheelYdist));
+  private final Translation2d m_backLeftLocation = new Translation2d(-Units.inchesToMeters(DriveConstants.WheelXdist), Units.inchesToMeters(DriveConstants.WheelYdist));
+  private final Translation2d m_backRightLocation = new Translation2d(-Units.inchesToMeters(DriveConstants.WheelXdist), -Units.inchesToMeters(DriveConstants.WheelYdist));
   
   private final SwerveModule m_frontLeft = new SwerveModule(ControlSystem.kLeftFrontDrive, ControlSystem.kLeftFrontTurn, ControlSystem.kLFturn, DriveConstants.kFrontLeftModuleAngularOffset);
   private final SwerveModule m_frontRight = new SwerveModule(ControlSystem.kRightFrontDrive, ControlSystem.kRightFrontTurn, ControlSystem.kRFturn, DriveConstants.kFrontRightModuleAngularOffset);
