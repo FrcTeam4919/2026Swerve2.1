@@ -121,20 +121,20 @@ public class Drivetrain {
   SmartDashboard.putNumber("Back Left drive speed", m_backLeft.DriveOutput());
   SmartDashboard.putNumber("Back Right drive speed", m_backRight.DriveOutput());
 //Display Kinematics
-   SmartDashboard.putNumber("Front Left encoder count", m_frontLeft.TurnOutput());
-  SmartDashboard.putNumber("Front Right encoder count", m_frontRight.TurnOutput());
-  SmartDashboard.putNumber("Back Left encoder count", m_backLeft.TurnOutput());
-  SmartDashboard.putNumber("Back Right encoder count", m_backRight.TurnOutput());
+   SmartDashboard.putNumber("Front Left encoder count", m_frontLeft.TurnOutput()*180/Math.PI);
+  SmartDashboard.putNumber("Front Right encoder count", m_frontRight.TurnOutput()*180/Math.PI);
+  SmartDashboard.putNumber("Back Left encoder count", m_backLeft.TurnOutput()*180/Math.PI);
+  SmartDashboard.putNumber("Back Right encoder count", m_backRight.TurnOutput()*180/Math.PI);
  //Display Wheel orientations
-  SmartDashboard.putNumber("Front Left wheel angle", m_frontLeft.wheelAngle());
-  SmartDashboard.putNumber("Front Right wheel angle", m_frontRight.wheelAngle());
-  SmartDashboard.putNumber("Back Left wheel angle", m_backLeft.wheelAngle());
-  SmartDashboard.putNumber("Back Right wheel angle", m_backRight.wheelAngle());
+  SmartDashboard.putNumber("Front Left wheel angle", m_frontLeft.wheelAngle()*180/Math.PI);
+  SmartDashboard.putNumber("Front Right wheel angle", m_frontRight.wheelAngle()*180/Math.PI);
+  SmartDashboard.putNumber("Back Left wheel angle", m_backLeft.wheelAngle()*180/Math.PI);
+  SmartDashboard.putNumber("Back Right wheel angle", m_backRight.wheelAngle()*180/Math.PI);
  //Display Wheel orientations
-  SmartDashboard.putNumber("Front Left NEO wheel angle", m_frontLeft.getTurnAngle());
-  SmartDashboard.putNumber("Front Right NEO wheel angle", m_frontRight.getTurnAngle());
-  SmartDashboard.putNumber("Back Left Neo wheel angle", m_backLeft.getTurnAngle());
-  SmartDashboard.putNumber("Back Right NEO wheel angle", m_backRight.getTurnAngle());
+  SmartDashboard.putNumber("Front Left NEO wheel angle", m_frontLeft.getTurnAngle()*180/Math.PI);
+  SmartDashboard.putNumber("Front Right NEO wheel angle", m_frontRight.getTurnAngle()*180/Math.PI);
+  SmartDashboard.putNumber("Back Left Neo wheel angle", m_backLeft.getTurnAngle()*180/Math.PI);
+  SmartDashboard.putNumber("Back Right NEO wheel angle", m_backRight.getTurnAngle()*180/Math.PI);
 
 
 
