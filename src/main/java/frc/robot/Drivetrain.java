@@ -31,7 +31,7 @@ import frc.robot.Constants.DriveConstants;
 /** Represents a swerve drive style drivetrain. */
 public class Drivetrain {
   public static final double kMaxSpeed = DriveConstants.kMaxSpeed; // 3 meters per second
-  public static final double kMaxAngularSpeed = Math.PI; // 1/2 rotation per second
+  public static final double kMaxAngularSpeed = DriveConstants.kMaxAngularSpeed; // 1/2 rotation per second
 
   private final Translation2d m_frontLeftLocation = new Translation2d(Units.inchesToMeters(DriveConstants.WheelXdist), Units.inchesToMeters(DriveConstants.WheelYdist));
   private final Translation2d m_frontRightLocation = new Translation2d(Units.inchesToMeters(DriveConstants.WheelXdist), -Units.inchesToMeters(DriveConstants.WheelYdist));
