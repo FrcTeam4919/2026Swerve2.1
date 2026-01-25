@@ -113,7 +113,7 @@ private int m_driveMotorChannel;
     // Set the distance per pulse for the drive encoder. We can simply use the
     // distance traveled for one rotation of the wheel divided by the encoder
     // resolution.
-   // m_driveEncoder.setDistancePerPulse(2 * Math.PI * kWheelRadius / kEncoderResolution);
+    //m_driveEncoder.setDistancePerPulse(2 * Math.PI * kWheelRadius / kEncoderResolution);
 
     // Set the distance (in this case, angle) in radians per pulse for the turning encoder.
     // This is the the angle through an entire rotation (2 * pi) divided by the
@@ -122,10 +122,10 @@ private int m_driveMotorChannel;
 
     // Limit the PID Controller's input range between -pi and pi and set the input
     // to be continuous.
-     m_moduleEncoderAngularOffset = moduleEncoderAngularOffset*Math.PI*2;
-    m_desiredState.angle = getAngle();
+    m_moduleEncoderAngularOffset = moduleEncoderAngularOffset*Math.PI*2;
+    //m_desiredState.angle = getAngle();
     m_turningPIDController.enableContinuousInput(-Math.PI, Math.PI);
-    resetEncoders();
+    //resetEncoders();
   }
 
   /**
@@ -182,31 +182,36 @@ private int m_driveMotorChannel;
    * @param desiredState Desired state with speed and angle.
    */
   public void setDesiredState(SwerveModuleState desiredState) {
-    var encoderRotation = new Rotation2d(m_turningEncoder.getPosition());
 
+    //var encoderRotation = new Rotation2d(m_turningEncoder.getDistance());
+ 
     // Optimize the reference state to avoid spinning further than 90 degrees
-    desiredState.optimize(encoderRotation);
+    //SwerveModuleState state = SwerveModuleState.optimize(desiredState, encoderRotation);
 
     // Scale speed by cosine of angle error. This scales down movement perpendicular to the desired
     // direction of travel that can occur when modules change directions. This results in smoother
     // driving.
-    desiredState.cosineScale(encoderRotation);
+    //state.speedMetersPerSecond *= state.angle.minus(encoderRotation).getCos();
 
-    // Calculate the drive output from the drive PID controller.
-    final double driveOutput =
-        m_drivePIDController.calculate(m_driveEncoder.getVelocity(), desiredState.speedMetersPerSecond);
+    
+    SwerveModuleState correctedDesiredState = new SwerveModuleState();
+    correctedDesiredState.speedMetersPerSecond = desiredState.speedMetersPerSecond;
+    correctedDesiredState.angle = desiredState.angle;//.plus(Rotation2d.fromDegrees(m_moduleEncoderAngularOffset));
+    // Optimize the reference state to avoid spinning further than 90 degrees.
 
-    final double driveFeedforward = m_driveFeedforward.calculate(desiredState.speedMetersPerSecond);
+    
+    SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(correctedDesiredState,
+        getAngle());
+       // optimizedDesiredState.cosineScale(getAngle());
+        //new Rotation2d(m_CANcoder.getPosition().getValue()));
 
-    // Calculate the turning motor output from the turning PID controller.
-    final double turnOutput =
-        m_turningPIDController.calculate(
-            m_turningEncoder.getPosition(), desiredState.angle.getRadians());
+   
+    // Command driving and turning SPARKS MAX towards their respective setpoints.
+    m_driveClosedLoopController.setReference(optimizedDesiredState.speedMetersPerSecond, SparkMax.ControlType.kVelocity);
+    m_turnClosedLoopController.setReference(optimizedDesiredState.angle.getRadians(), SparkMax.ControlType.kPosition);
+    
+    m_desiredState = desiredState;
+    
 
-    final double turnFeedforward =
-        m_turnFeedforward.calculate(m_turningPIDController.getSetpoint().velocity);
-
-    m_driveMotor.setVoltage(driveOutput + driveFeedforward);
-    m_turningMotor.setVoltage(turnOutput + turnFeedforward);
   }
 }
