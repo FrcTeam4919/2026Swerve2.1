@@ -182,7 +182,6 @@ private int m_driveMotorChannel;
    * @param desiredState Desired state with speed and angle.
    */
   public void setDesiredState(SwerveModuleState desiredState) {
-
     //var encoderRotation = new Rotation2d(m_turningEncoder.getDistance());
  
     // Optimize the reference state to avoid spinning further than 90 degrees
@@ -210,8 +209,17 @@ private int m_driveMotorChannel;
     m_driveClosedLoopController.setSetpoint(optimizedDesiredState.speedMetersPerSecond, SparkMax.ControlType.kVelocity);
     m_turnClosedLoopController.setSetpoint(optimizedDesiredState.angle.getRadians(), SparkMax.ControlType.kPosition);
     
-    m_desiredState = desiredState;
+    /*  final double turnOutput =
+        m_turningPIDController.calculate(
+            m_turningEncoder.getDistance(), desiredState.angle.getRadians());
+            
+
+    */
+
+    //m_desiredState = desiredState;
     
+    // m_driveMotor.setVoltage(driveOutput + driveFeedforward);
+    // m_turningMotor.setVoltage(turnOutput + turnFeedforward);
 
   }
 }
