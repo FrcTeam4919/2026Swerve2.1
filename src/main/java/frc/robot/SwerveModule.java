@@ -63,8 +63,8 @@ private double m_moduleEncoderAngularOffset;
               kModuleMaxAngularVelocity, kModuleMaxAngularAcceleration));
 
   // Gains are for example purposes only - must be determined for your own robot!
-  private final SimpleMotorFeedforward m_driveFeedforward = new SimpleMotorFeedforward(0.5, 1.5);
-  private final SimpleMotorFeedforward m_turnFeedforward = new SimpleMotorFeedforward(0.5, 0.25);
+  //private final SimpleMotorFeedforward m_driveFeedforward = new SimpleMotorFeedforward(0.5, 1.5);
+  //private final SimpleMotorFeedforward m_turnFeedforward = new SimpleMotorFeedforward(0.5, 0.25);
 private int m_driveMotorChannel;
   /**
    * Constructs a SwerveModule with a drive motor, turning motor, drive encoder and turning encoder.
@@ -207,8 +207,8 @@ private int m_driveMotorChannel;
 
    
     // Command driving and turning SPARKS MAX towards their respective setpoints.
-    m_driveClosedLoopController.setReference(optimizedDesiredState.speedMetersPerSecond, SparkMax.ControlType.kVelocity);
-    m_turnClosedLoopController.setReference(optimizedDesiredState.angle.getRadians(), SparkMax.ControlType.kPosition);
+    m_driveClosedLoopController.setSetpoint(optimizedDesiredState.speedMetersPerSecond, SparkMax.ControlType.kVelocity);
+    m_turnClosedLoopController.setSetpoint(optimizedDesiredState.angle.getRadians(), SparkMax.ControlType.kPosition);
     
     m_desiredState = desiredState;
     
